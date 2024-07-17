@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component("school")
 @Data
-@Scope("Singlton")
+@Scope("singlton")
 public class School {
     private String name;
     private String adress;

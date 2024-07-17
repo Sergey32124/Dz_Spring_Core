@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /* Задача
 Имя пакета springCreateBean
 Создать класс Student
@@ -28,16 +31,24 @@ public class DzSpringCoreApplication {
 
     public static void main(String[] args) {
         var context= new AnnotationConfigApplicationContext(Config.class);
-        Student student=new Student();
+        ArrayList<Student> students=new ArrayList<>();
+
+        var student=context.getBean("student",Student.class);
+        student.setName("BEN");
         student.setId(1);
-        student.setName("Ded");
-        Student student2=new Student();
+        var student2=context.getBean("student",Student.class);
+        student2.setName("JEN");
         student2.setId(2);
-        student2.setName("Dede");
-        System.out.println(student.getId()+" "+student.getName());
-        System.out.println(student2.getId()+" "+student2.getName());
-        School school=new School("JJ","5555");
-        System.out.println(school);
+        var student3=context.getBean("student",Student.class);
+        student3.setName("LEN");
+        student3.setId(3);
+//        students.add(student);
+//        students.add(student2);
+//        students.add(student3);
+        students.addAll(Arrays.asList(student,student2,student3));
+        for (Student s: students){
+            System.out.println(s);
+        }
     }
 
 }
